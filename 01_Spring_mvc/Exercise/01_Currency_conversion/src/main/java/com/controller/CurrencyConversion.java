@@ -13,12 +13,12 @@ public class CurrencyConversion {
     @Autowired
     IConvertService convertService;
 
-    @GetMapping
+    @GetMapping(value = "/")
 public String convert(){
         return "index";
     }
 
-    @PostMapping("/convert")
+    @PostMapping(value = "/convert")
     public String change(@RequestParam double input, double m1, double m2, Model model){
         double result = convertService.change(input,m1,m2);
         model.addAttribute("result",result);

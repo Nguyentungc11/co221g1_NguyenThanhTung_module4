@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class Translate {
+public class TranslateController {
     @Autowired
     IDictionaryService dictionaryService;
-    @GetMapping
+    @GetMapping(value = "/")
     public String home(){
         return "index";
     }
