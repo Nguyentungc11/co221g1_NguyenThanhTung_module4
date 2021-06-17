@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3723d29f-c034-46ed-84a0-1f5f4a297031" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../02_Spring_Controller/Exercise/01-sandwitch-condiments/.idea/modules/01-sandwitch-condiments.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../02_Spring_Controller/Practice/01-spring-email-validation/.idea/modules/01-spring-email-validation.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/CurrencyConversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/CurrencyConversionController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +60,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../02_Dictionary" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -177,7 +179,8 @@
       <workItem from="1623739518579" duration="9822000" />
       <workItem from="1623793405274" duration="58000" />
       <workItem from="1623793711847" duration="1013000" />
-      <workItem from="1623806125465" duration="634000" />
+      <workItem from="1623806125465" duration="981000" />
+      <workItem from="1623831477131" duration="2750000" />
     </task>
     <servers />
   </component>
