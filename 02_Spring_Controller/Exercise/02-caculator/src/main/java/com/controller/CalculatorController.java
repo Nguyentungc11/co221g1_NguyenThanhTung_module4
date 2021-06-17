@@ -14,9 +14,10 @@ public class CalculatorController {
     @Autowired
     ICalculatorService calculatorService;
 
-    @GetMapping
+    @GetMapping("/")
     public String home() {
         return "index";
+
     }
 
     @PostMapping(value = "/calculator")
