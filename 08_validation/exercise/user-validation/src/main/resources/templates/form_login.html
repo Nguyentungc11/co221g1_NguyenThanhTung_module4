@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/user/login}" th:object="${userDto}" method="post">
+    <p>Fist name</p>
+    <input type="text" th:field="*{fistName}">
+    <p style="color: red" th:if="${#fields.hasErrors()}" th:errors="*{fistName}"></p>
+    <p>Last name</p>
+    <input type="text" th:field="*{lastName}">
+    <p style="color: red" th:if="${#fields.hasErrors()}" th:errors="*{lastName}"></p>
+
+    <p>Phone</p>
+    <input type="text" th:field="*{phone}">
+    <p style="color: red" th:if="${#fields.hasErrors()}" th:errors="*{phone}"></p>
+
+    <p>Email</p>
+    <input type="text" th:field="*{email}">
+    <p style="color: red" th:if="${#fields.hasErrors()}" th:errors="*{email}"></p>
+
+    <input type="submit" value="login">
+</form>
+</body>
+</html>
