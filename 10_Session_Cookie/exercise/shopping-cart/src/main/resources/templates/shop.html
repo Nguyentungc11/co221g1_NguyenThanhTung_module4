@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.css">
+    <script src="bootstrap-4.6.0-dist/bootstrap.min.js"></script>
+    </head>
+
+<body>
+<p>
+    <a href="/shopping-cart">Your cart</a>
+</p>
+<th:block th:each="product:${products}">
+<div class="card" style="width: 18rem;">
+    <img src="https://cdn.nguyenkimmall.com/images/thumbnails/600/336/detailed/699/10047733-dien-thoai-iphone-12-pro-max-256gb-xanh-3.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${product.name}"></h5>
+        <p class="card-text" th:text="${'Price :'+ product.price}"></p>
+        <a th:href="@{/detail/{id}(id = ${product.id})}" class="btn btn-primary">Product detail</a>
+        <a th:href="@{/add/__${product.id}__(action='list')}" class="btn btn-primary">Add To Cart</a>
+    </div>
+</div>
+</th:block>
+</body>
+</html>

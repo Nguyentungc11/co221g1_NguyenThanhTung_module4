@@ -16,24 +16,25 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     ICustomerService iCustomerService;
+
     @GetMapping(value = "/")
-    public String showListCustomer(Model model){
+    public String showListCustomer(Model model) {
         List<Customer> list = iCustomerService.findAll();
-        model.addAttribute("listCustomer",list);
+        model.addAttribute("listCustomer", list);
         return "/index";
     }
 
     @GetMapping(value = "/show_create")
-    public String showFormCreate(Model model){
-        model.addAttribute("customer",new Customer());
+    public String showFormCreate(Model model) {
+        model.addAttribute("customer", new Customer());
         return "/create";
     }
 
     @PostMapping(value = "/create")
-        public String createCustomer(Customer customer, RedirectAttributes redirectAttributes){
-this.iCustomerService.saveCustomer(customer);
-redirectAttributes.addFlashAttribute("message","Customer " + customer.getName() + "was add");
-return "redirect:/";
+    public String createCustomer(Customer customer, RedirectAttributes redirectAttributes) {
+        this.iCustomerService.saveCustomer(customer);
+        redirectAttributes.addFlashAttribute("message", "Customer " + customer.getName() + "was add");
+        return "redirect:/";
     }
 
 
