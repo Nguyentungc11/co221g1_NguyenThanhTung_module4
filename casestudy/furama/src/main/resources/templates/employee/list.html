@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout::header}">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{layout::menu}"></div>
+<a class="btn btn-info" href="/employee/create" style="margin-top: 70px">Create new employee</a>
+<p th:text="${msg}" style="color: #005cbf"></p>
+<form action="/employee/" style="margin-top: 20px">
+    <input type="text" name="keyword">
+    <input type="submit" value="search">
+</form>
+<table class="table table-striped" id="tableCustomer" style="margin-top: 20px">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Id Card</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Position</th>
+        <th scope="col">Division</th>
+        <th scope="col">Education degree</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+<tbody>
+<tr th:each="em,row:${employees}">
+    <td th:text="${em.id}"></td>
+    <td th:text="${em.name}"></td>
+    <td th:text="${em.birthday}"></td>
+    <td th:text="${em.idCard}"></td>
+    <td th:text="${em.salary}"></td>
+    <td th:text="${em.phone}"></td>
+    <td th:text="${em.email}"></td>
+    <td th:text="${em.address}"></td>
+    <td th:text="${em.position.name}"></td>
+    <td th:text="${em.division.name}"></td>
+    <td th:text="${em.educationDegree.name}"></td>
+    <td><a class="btn btn-warning" th:href="@{/employee/edit(id=${em.id})}">Edit</a></td>
+    <td><!-- Button trigger modal -->
+        <button th:data1="${em.id}" th:data2="${em.name}"
+                onclick="sendId(this.getAttribute('data1'),this.getAttribute('data2'))" type="button" class="btn btn-primary"
+                data-toggle="modal" data-target="#exampleModal">
+            Delete
+        </button>
+    </td>
+</tr>
+</tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/employee/delete" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa <span id="nhanTen"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <input type="hidden" id="nhan" name="id">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p>
+    <a th:if="${employees.hasPrevious()}" th:href="@{/employee/list(page=${employees.number - 1},keyword=${keywordValue})}">Previous</a>
+    <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
+    <a th:if="${employees.hasNext()}" th:href="@{/employee/list(page=${employees.number + 1},keyword=${keywordValue})}">Next</a>
+</p>
+<script>
+    function sendId(id,name){
+        document.getElementById("nhan").value = id;
+        document.getElementById("nhanTen").innerText = name;
+    }
+</script>
+<script src="/bootstrapmin/bootstrap.min.js"></script>
+<script src="/bootstrapmin/jquery-3.6.0.min.js"></script>
+<script src="/bootstrapmin/popper.min.js"></script>
+</body>
+</html>

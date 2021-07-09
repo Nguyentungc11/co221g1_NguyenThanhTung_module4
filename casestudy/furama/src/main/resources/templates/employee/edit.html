@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout::header}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<style>
+    small{
+        color: red;
+    }
+</style>
+<div th:insert="~{layout::menu}"></div>
+<div class="container" style="margin-top: 70px">
+    <form action="/employee/edit" th:object="${employeeDto}" method="post">
+        <div class="form-group">
+            <label for="code1" class="col-sm-2 col-form-label">Id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{id}" id="code1" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{name}" id="name">
+                <small th:errors="*{name}"></small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="birthday" class="col-sm-2 col-form-label">Birthday</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" th:field="*{birthday}" id="birthday">
+                <small th:errors="*{birthday}"></small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="idcard" class="col-sm-2 col-form-label">Id Card</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{idCard}" id="idcard">
+                <small th:errors="*{idCard}"></small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="salary" class="col-sm-2 col-form-label">Salary</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{salary}" id="salary">
+                <small th:errors="*{salary}"></small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{phone}" id="phone">
+                <small th:errors="*{phone}"></small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{email}" id="email">
+                <small th:errors="*{email}"></small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{address}" id="address">
+                <small th:errors="*{address}"></small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-form-label">Position</label>
+            <div class="col-sm-10">
+                <select th:field="*{position}" class="form-control">
+                    <option th:each="p:${positions}"
+                            th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-form-label">Division</label>
+            <div class="col-sm-10">
+                <select th:field="*{division}" class="form-control">
+                    <option th:each="d:${divisions}"
+                            th:value="${d.id}" th:text="${d.name}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 col-form-label">Education Degree</label>
+            <div class="col-sm-10">
+                <select th:field="*{educationDegree}" class="form-control">
+                    <option th:each="e:${educations}"
+                            th:value="${e.id}" th:text="${e.name}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around">
+            <a class="btn btn-secondary"  href="/employee/">Back to list customer</a>
+            <button type="submit" class="btn btn-success">Create</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

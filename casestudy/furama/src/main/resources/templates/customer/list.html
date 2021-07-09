@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/bootstrapmin/bootstrap.min.css">
+    <script src="/bootstrapmin/bootstrap.min.js"></script>
+    <script src="/bootstrapmin/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrapmin/popper.min.js"></script>
+</head>
+<body>
+<div th:insert="~{layout :: menu}"></div>
+<a href="/customer/create" class="btn btn-info"  style="margin-top: 70px">Create new customer</a>
+<p th:text="${msg}" style="color: #005cbf"></p>
+<form action="/customer/list">
+    <input type="text" name = "keyword">
+    <input type="submit" value="search">
+</form>
+<table class="table table-striped" id="tableCustomer" style="margin-top: 20px">
+    <thead>
+    <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Id Card</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Type of customer</th>
+        <th scope="col">Address</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cus,row:${customerList}">
+        <td th:text="${cus.code}"></td>
+        <td th:text="${cus.id}"></td>
+        <td th:text="${cus.name}"></td>
+        <td th:text="${cus.birthday}"></td>
+        <td th:text="${cus.gender}"></td>
+        <td th:text="${cus.idCard}"></td>
+        <td th:text="${cus.phone}"></td>
+        <td th:text="${cus.email}"></td>
+        <td th:text="${cus.address}"></td>
+        <td th:text="${cus.customerType.typeName}"></td>
+        <td><a class="btn btn-warning" th:href="@{/customer/edit(id=${cus.id})}">Edit</a></td>
+        <td><!-- Button trigger modal -->
+            <button th:data1="${cus.id}" th:data2="${cus.name}"
+                    onclick="sendId(this.getAttribute('data1'),this.getAttribute('data2'))" type="button" class="btn btn-primary"
+                    data-toggle="modal" data-target="#exampleModal">
+                Delete
+            </button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/customer/delete" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa <span id="nhanTen"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <input type="hidden" id="nhan" name="id">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p>
+    <a th:if="${customerList.hasPrevious()}" th:href="@{/customer/list(page=${customerList.number - 1},keyword=${keywordValue})}">Previous</a>
+    <span th:text="${customerList.number + 1}"></span>/<span th:text="${customerList.totalPages}"></span>
+    <a th:if="${customerList.hasNext()}" th:href="@{/customer/list(page=${customerList.number + 1},keyword=${keywordValue})}">Next</a>
+</p>
+<script>
+    function sendId(id,name){
+        document.getElementById("nhan").value = id;
+        document.getElementById("nhanTen").innerText = name;
+    }
+</script>
+<!--<p>-->
+<!--    <span th:each="pageNo: ${#numbers.sequence(0,customerList.totalPages - 1)}">-->
+<!--        <a th:href="@{/customer/list(page =${pageNo})}" th:text="${pageNo + 1}"></a>-->
+<!--    </span>-->
+<!--</p>-->
+<script src="/bootstrapmin/bootstrap.min.js"></script>
+<script src="/bootstrapmin/jquery-3.6.0.min.js"></script>
+<script src="/bootstrapmin/popper.min.js"></script>
+</body>
+</html>
